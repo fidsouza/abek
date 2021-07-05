@@ -1,4 +1,4 @@
-function teste (): number {
+function teste () {
   return 1
 }
 
