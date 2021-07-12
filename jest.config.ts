@@ -6,7 +6,7 @@ export default {
   coverageProvider: 'v8',
   collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
   transform: {
-    '.+\\/ts$': 'ts-jest'
+    '^.+\\.(ts|tsx)?$': 'ts-jest'
   }
 
 }
