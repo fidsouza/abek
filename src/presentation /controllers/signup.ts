@@ -23,6 +23,6 @@ export class SignUpController implements Controller {
       return badRequest(new InvalidParamError('email'))
     }
 
-    throw new InvalidParamError('Error')
+    return undefined!
   }
 }
