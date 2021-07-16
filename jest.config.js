@@ -1,12 +1,11 @@
 
-export default {
+module.exports = {
   roots: ['<rootDir>/src'],
-  collectCoverage: true,
   coverageDirectory: 'coverage',
-  coverageProvider: 'v8',
+  testEnvironment: 'node',
   collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
   transform: {
-    '^.+\\.(ts|tsx)?$': 'ts-jest'
+    '.+\\.ts$': 'ts-jest'
   }
 
 }

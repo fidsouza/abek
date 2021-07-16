@@ -5,9 +5,13 @@
   "main": "index.js",
   "scripts": {
     "prepare": "husky install",
-    "clear-jest":"jest --clearCache",
-    "test": "jest --passWithNoTests --watch",
-    "test:staged": "jest --passWithNoTests"
+    "test:clear":"jest --clearCache && npm run test:unit",
+    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
+    "test:verbose": "jest --passWithNoTests --runInBand",
+    "test:unit": "npm test -- --watch -c jest-config-unit.js",
+    "test:integration": "npm test -- --watch -c jest-config-integration.js",
+    "test:staged": "npm test -- --findRelatedTest",
+    "test:ci": "npm test -- --coverage"
   },
   "keywords": [],
   "author": "",
@@ -33,7 +37,7 @@
   "lint-staged": {
     "*.ts": [
       "eslint --cache --fix",
-      "npm run test:staged"
+      "npm run test:ci"
     ]
   }
 }
