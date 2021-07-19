@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "prepare": "husky install",
-    "test:clear":"jest --clearCache && npm run test:unit",
+    "test:clear": "jest --clearCache && npm run test:unit",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
     "test:verbose": "jest --passWithNoTests --runInBand",
     "test:unit": "npm test -- --watch -c jest-config-unit.js",
@@ -19,6 +19,7 @@
   "devDependencies": {
     "@types/jest": "^26.0.23",
     "@types/node": "^16.0.0",
+    "@types/validator": "^13.6.3",
     "@typescript-eslint/eslint-plugin": "^4.28.1",
     "eslint": "^7.30.0",
     "eslint-config-standard-with-typescript": "^20.0.0",
@@ -39,5 +40,8 @@
       "eslint --cache --fix",
       "npm run test:ci"
     ]
+  },
+  "dependencies": {
+    "validator": "^13.6.0"
   }
 }
