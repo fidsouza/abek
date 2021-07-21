@@ -13,8 +13,8 @@ const makeAddAccountRepository = (): AddAccountRepository => {
       const fakeAccount = {
         id: 'valid_id',
         name: 'valid_name',
-        email: 'valid_email@mail.com',
-        password: 'valid_password'
+        email: 'valid_email',
+        password: 'hashed_password'
       }
 
       return await new Promise(resolve => resolve(fakeAccount))
@@ -82,8 +82,8 @@ describe('DbAddAccount UseCase', () => {
   })
 
   test('Should throws if Encrypter throws', async () => {
-    const { encrypterStub, sut } = makesut()
-    jest.spyOn(encrypterStub, 'encrypt').mockResolvedValueOnce(new Promise((resolve, reject) => reject(new Error())))
+    const { addAccountRepositoryStub, sut } = makesut()
+    jest.spyOn(addAccountRepositoryStub, 'add').mockResolvedValueOnce(new Promise((resolve, reject) => reject(new Error())))
     const accountData = {
       name: 'valid_name',
       email: 'valid_email',
@@ -91,5 +91,21 @@ describe('DbAddAccount UseCase', () => {
     }
     const promise = sut.add(accountData)
     await expect(promise).rejects.toThrow()
+  })
+
+  test('Should return an account on success', async () => {
+    const { sut } = makesut()
+    const accountData = {
+      name: 'valid_name',
+      email: 'valid_email',
+      password: 'hashed_password'
+    }
+    const account = await sut.add(accountData)
+    expect(account).toEqual({
+      id: 'valid_id',
+      name: 'valid_name',
+      email: 'valid_email',
+      password: 'hashed_password'
+    })
   })
 })
